@@ -1,0 +1,70 @@
+
+Suggestions:
+
+----------- Debugging Help ---------
+
+Put the following at the beginning of your file (header file to report errors
+on all pages):
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+You'll want to remove this once the site is live, but it will give you some
+more detailed information when there are syntax or other errors.
+
+-------------------------------------
+
+-----------  Templates --------------
+
+Create a page template by breaking down the page into the Header,
+Content, and Footer.  Essentially, put everything from <!DOCTYPE html>,
+and any previous php calls, all the way to and including <body> in
+the header.php file.  The footer.php will include the closing </body></html>
+and any end of doc <script> includes or common elements at the bottom of every
+page.  The content of the page goes in whatever the page is referencing
+(i.e. aboutus.php, messaging.php, profile.php)
+
+Your template will essentially end up looking like this:
+
+<?php require_once('header.php');?>
+<!-- Content Goes Here -->
+<?php require_once('footer.php');?>
+
+The navigation and styling will end up in header.php. That way, when updates
+are made, it only has to be done there and will be associated with every
+other page in a consistent manner.
+
+You can break it down however you want of course. You can put the menu in a
+separate file and then include that in the header.php as well.  It's about
+making it easier for maintenance and updates.
+
+---------------------------------------
+
+---------- Function Grouping ----------
+
+To help with maintenance and speed, put like functions together in a single
+file that can be included only when needed.  For example, the functions For
+creating and updating a profile don't need to be loaded on the messages page.
+
+----------------------------------------
+
+---------- PHP Frameworks --------------
+
+There are plenty of Object Oriented frameworks out there.  If you think you'd
+be more comfortable using one, by all means.  Laravel and CakePHP are a
+couple popular ones.  However, I think learning the basics first is the best
+approach.
+
+-----------------------------------------
+
+----------- Security --------------------
+
+Be very conscious of security when it comes to passing data or using input
+data.  Do not use GET or REQUEST, stick to POST only.
+
+Always clean input data with htmlspecialchars()
+
+Read up on how to secure php sites, mysql queries, etc.
+
+------------------------------------------
